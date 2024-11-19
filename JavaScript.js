@@ -1,20 +1,31 @@
-const input = prompt("Enter a list of froyo flavors, separated by commas:");
+// this function is asking the user what froyo they would like
+function getInput() {
+    return prompt("Enter a list of froyo flavors, separated by commas:");
+}
 
-if (input) {
-    // Using the .map feature to group the flavors correctly so when the user 
-    // inputs flavors with or without
-    const flavors = input.split(',').map(flavor => flavor.trim());
+// This function is splitting each input between the comma and creating an array
+function processFlavors(input) {
+    return input.split(',').map(flavor => flavor.trim());
+}
 
-    // Count the occurrences of each flavor
+// This function is counting the flavors 
+function countFlavors(flavors) {
     const flavorCounts = {};
     flavors.forEach(flavor => {
         flavorCounts[flavor] = (flavorCounts[flavor] || 0) + 1;
     });
+    return flavorCounts;
+}
 
-    // Log each flavor and its count
+// This displays the results
+function displayResults(flavorCounts) {
     for (const flavor in flavorCounts) {
         console.log(`You have entered ${flavorCounts[flavor]} ${flavor}.`);
     }
-  } else {
-  console.log("No flavors entered.");
 }
+
+// This calls everything 
+const input = getInput();
+const flavors = processFlavors(input);
+const flavorCounts = countFlavors(flavors);
+displayResults(flavorCounts);
